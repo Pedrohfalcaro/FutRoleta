@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Partidas 🎲</title>
+    <!-- Importação da fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #4B0082;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-denim.png');
+        }
+        .seta-voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .seta-voltar:hover {
+            color: #FFD700;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+        }
+        .coluna {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45%;
+        }
+        .botao-coluna {
+            background-color: #FFD700;
+            color: black;
+            padding: 15px 25px;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 10px;
+            width: 200px;
+        }
+        .botao-coluna:hover {
+            background-color: #FFA500;
+        }
+        .resultados {
+            background-color: #3b0062;
+            color: yellow;
+            padding: 15px;
+            width: 90%;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        .resultados p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo FutR🎲leta -->
+    <div class="logo">FutR🎲leta</div>
+    
+    <!-- Seta para voltar -->
+    <button class="seta-voltar" onclick="window.location.href='FutRoletaHome.html'">←</button>
+    
+    <!-- Título Simulador de Partidas 🎲 -->
+    <h1>Simulador de Partidas 🎲</h1>
+    
+    <!-- Container com as duas colunas -->
+    <div class="container">
+        <!-- Coluna da esquerda (Placar) -->
+        <div class="coluna">
+            <button class="botao-coluna" onclick="simularPlacares()">Placar</button>
+            <div class="resultados" id="resultados-placar"></div>
+        </div>
+
+        <!-- Coluna da direita (Pênaltis) -->
+        <div class="coluna">
+            <button class="botao-coluna" onclick="simularPenaltis()">Pênaltis</button>
+            <div class="resultados" id="resultados-penaltis"></div>
+        </div>
+    </div>
+
+    <script>
+        let placaresGerados = 0;
+        let penaltiGerados = 0;
+
+        function simularPlacares() {
+            if (placaresGerados >= 16) {
+                document.getElementById("resultados-placar").innerHTML = ''; // Reseta os resultados
+                placaresGerados = 0;
+            }
+
+            let quantidade = prompt("Digite a quantidade de placares a serem gerados:");
+            quantidade = parseInt(quantidade);
+            if (isNaN(quantidade) || quantidade <= 0) {
+                alert("Por favor, insira um número válido.");
+                return;
+            }
+
+            let resultados = "";
+            for (let i = 0; i < quantidade; i++) {
+                let time1 = gerarPlacar();
+                let time2 = gerarPlacar();
+                resultados += `<p>${time1} x ${time2}</p>`;
+                placaresGerados++;
+                if (placaresGerados >= 16) break; // Limita a quantidade de resultados
+            }
+            document.getElementById("resultados-placar").innerHTML += resultados;
+        }
+
+        function gerarPlacar() {
+            let pesos = [47, 50, 38, 10, 4, 3, 1, 0.5, 0.2];
+            let opcoes = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            return escolherResultado(opcoes, pesos);
+        }
+
+        function simularPenaltis() {
+            if (penaltiGerados >= 10) {
+                document.getElementById("resultados-penaltis").innerHTML = ''; // Reseta os resultados
+                penaltiGerados = 0;
+            }
+
+            let opcoes = ["⚽ Gol!", "🧤 Defesa do goleiro!", "❌ Para fora!"];
+            let pesos = [75, 15, 10];
+            let resultado = escolherResultado(opcoes, pesos);
+            penaltiGerados++;
+
+            if (penaltiGerados <= 10) {
+                document.getElementById("resultados-penaltis").innerHTML += `<p>${resultado}</p>`;
+            }
+        }
+        
+        function escolherResultado(opcoes, pesos) {
+            let totalPeso = pesos.reduce((a, b) => a + b, 0);
+            let sorteio = Math.random() * totalPeso;
+            let acumulado = 0;
+            
+            for (let i = 0; i < opcoes.length; i++) {
+                acumulado += pesos[i];
+                if (sorteio < acumulado) {
+                    return opcoes[i];
+                }
+            }
+        }
+    </script>
+</body>
+</html>

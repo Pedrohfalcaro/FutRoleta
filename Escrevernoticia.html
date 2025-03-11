@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escrever Notícia - FutRoleta</title>
+    <style>
+        body {
+            background-color: #4B0082;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-denim.png');
+        }
+        h1 {
+            font-size: 3em;
+        }
+        .logo {
+            font-size: 4em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            margin: 20px auto;
+            width: 60%;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .input-container input,
+        .input-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            border-radius: 5px;
+            color: black;
+            font-size: 1.2em;
+        }
+        .input-container textarea {
+            height: 200px;
+        }
+        .botao-container {
+            text-align: center;
+        }
+        .botao-container button {
+            background-color: #FFD700;
+            color: black;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .limpar-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: #FF6347;
+            color: white;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .limpar-btn:hover {
+            background-color: #FF4500;
+        }
+        .seta-voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .seta-voltar:hover {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <button class="seta-voltar" onclick="window.location.href='FutRoletaHome.html'">←</button>
+
+    <div class="logo">FutR🎲leta</div>
+    <h1>Escrever Notícia</h1>
+    <div class="input-container">
+        <input type="text" id="titulo" placeholder="Digite o título da notícia" />
+        <input type="date" id="data" />
+        <textarea id="conteudo" placeholder="Digite o conteúdo da notícia"></textarea>
+        <div class="botao-container">
+            <button onclick="salvarNoticia()">Publicar Notícia</button>
+        </div>
+    </div>
+
+    <button class="limpar-btn" onclick="limparHistorico()">Limpar Histórico de Notícias</button>
+
+    <script>
+        function salvarNoticia() {
+            const titulo = document.getElementById("titulo").value;
+            const data = document.getElementById("data").value;
+            const conteudo = document.getElementById("conteudo").value;
+
+            if (!titulo || !data || !conteudo) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            const noticia = {
+                titulo: titulo,
+                data: data,
+                conteudo: conteudo
+            };
+
+            // Recuperando as notícias armazenadas no localStorage, ou criando uma nova lista
+            let noticias = JSON.parse(localStorage.getItem("noticias")) || [];
+            noticias.push(noticia);
+
+            // Salvando as notícias novamente no localStorage
+            localStorage.setItem("noticias", JSON.stringify(noticias));
+
+            alert("Notícia salva com sucesso!");
+            window.location.href = "FutRoletaHome.html"; // Redireciona para a página principal
+        }
+
+        function limparHistorico() {
+            // Limpar o localStorage onde as notícias estão armazenadas
+            localStorage.removeItem("noticias");
+            alert("Histórico de notícias limpo com sucesso!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutR🎲leta - Temporada 2023</title>
+    <style>
+        body {
+            background-color: #4B0082;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-denim.png');
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            color: yellow; /* Cor do título FutR🎲leta */
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-left: 20px;
+        }
+        .centered {
+            text-align: center;
+        }
+        .table-container {
+            width: 50%;
+            margin-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        th {
+            background: #3C0061; /* Cor roxo escuro */
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        tr:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transition: 0.3s;
+        }
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            font-size: 2em;
+            background: none;
+            border: none;
+            color: white;
+        }
+        .menu-container {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu-container a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .menu-container a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <button class="menu" onclick="toggleMenu()">☰</button>
+    <div class="menu-container" id="menuContainer">
+        <a href="index.html">Página Inicial</a>
+        <a href="Geradorpartidas.html">Simulador de Partida</a>
+    </div>
+    <div class="container">
+        <h1>FutR🎲leta</h1>
+        <div class="centered">
+            <h2>Temporada 2023</h2>
+        </div>
+        <h2>Brasileirão Série A</h2>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Posição</th>
+                    <th>Time</th>
+                    <th>P</th>
+                    <th>V</th>
+                    <th>E</th>
+                    <th>D</th>
+                    <th>GF</th>
+                    <th>GS</th>
+                    <th>SG</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Bahia</td>
+                    <td>69</td>
+                    <td>21</td>
+                    <td>6</td>
+                    <td>11</td>
+                    <td>71</td>
+                    <td>52</td>
+                    <td>19</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Fortaleza</td>
+                    <td>62</td>
+                    <td>18</td>
+                    <td>8</td>
+                    <td>12</td>
+                    <td>80</td>
+                    <td>72</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Grêmio</td>
+                    <td>61</td>
+                    <td>16</td>
+                    <td>13</td>
+                    <td>9</td>
+                    <td>74</td>
+                    <td>61</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Internacional</td>
+                    <td>61</td>
+                    <td>18</td>
+                    <td>7</td>
+                    <td>13</td>
+                    <td>69</td>
+                    <td>76</td>
+                    <td>-7</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Ceará</td>
+                    <td>60</td>
+                    <td>19</td>
+                    <td>3</td>
+                    <td>16</td>
+                    <td>74</td>
+                    <td>63</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Santos</td>
+                    <td>59</td>
+                    <td>17</td>
+                    <td>8</td>
+                    <td>13</td>
+                    <td>68</td>
+                    <td>53</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>RB Bragantino</td>
+                    <td>56</td>
+                    <td>15</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>62</td>
+                    <td>51</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Corinthians</td>
+                    <td>55</td>
+                    <td>15</td>
+                    <td>10</td>
+                    <td>13</td>
+                    <td>76</td>
+                    <td>70</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Cuiabá</td>
+                    <td>54</td>
+                    <td>15</td>
+                    <td>9</td>
+                    <td>14</td>
+                    <td>78</td>
+                    <td>65</td>
+                    <td>13</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Athletico PR</td>
+                    <td>54</td>
+                    <td>15</td>
+                    <td>9</td>
+                    <td>14</td>
+                    <td>66</td>
+                    <td>56</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Palmeiras</td>
+                    <td>53</td>
+                    <td>14</td>
+                    <td>11</td>
+                    <td>13</td>
+                    <td>60</td>
+                    <td>57</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Flamengo</td>
+                    <td>50</td>
+                    <td>13</td>
+                    <td>11</td>
+                    <td>14</td>
+                    <td>67</td>
+                    <td>67</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Juventude</td>
+                    <td>49</td>
+                    <td>14</td>
+                    <td>7</td>
+                    <td>17</td>
+                    <td>63</td>
+                    <td>73</td>
+                    <td>-10</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Fluminense</td>
+                    <td>48</td>
+                    <td>14</td>
+                    <td>6</td>
+                    <td>18</td>
+                    <td>66</td>
+                    <td>72</td>
+                    <td>-6</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Atlético MG</td>
+                    <td>47</td>
+                    <td>13</td>
+                    <td>8</td>
+                    <td>17</td>
+                    <td>47</td>
+                    <td>61</td>
+                    <td>-14</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>America MG</td>
+                    <td>46</td>
+                    <td>12</td>
+                    <td>10</td>
+                    <td>16</td>
+                    <td>53</td>
+                    <td>64</td>
+                    <td>-11</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Sport Recife</td>
+                    <td>45</td>
+                    <td>13</td>
+                    <td>6</td>
+                    <td>19</td>
+                    <td>60</td>
+                    <td>61</td>
+                    <td>-1</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Chapecoense</td>
+                    <td>45</td>
+                    <td>12</td>
+                    <td>9</td>
+                    <td>17</td>
+                    <td>50</td>
+                    <td>69</td>
+                    <td>-19</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Atlético GO</td>
+                    <td>44</td>
+                    <td>12</td>
+                    <td>8</td>
+                    <td>18</td>
+                    <td>47</td>
+                    <td>66</td>
+                    <td>-19</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>São Paulo</td>
+                    <td>36</td>
+                    <td>8</td>
+                    <td>12</td>
+                    <td>18</td>
+                    <td>43</td>
+                    <td>65</td>
+                    <td>-22</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menuContainer');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
