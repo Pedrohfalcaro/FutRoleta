@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutRoleta</title>
+    <style>
+        body {
+            background-color: #4B0082;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-denim.png');
+        }
+        .menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            font-size: 2em;
+            background: none;
+            border: none;
+            color: white;
+        }
+        .menu-container {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu-container a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .menu-container a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            font-size: 3em;
+        }
+        .logo {
+            font-size: 4em;
+            font-weight: bold;
+        }
+        .logo span {
+            color: #FFD700;
+        }
+        .noticia-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 15px auto;
+            width: 60%;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+        }
+        .noticia-container:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .titulo {
+            font-size: 1.5em;
+            margin: 0;
+            color: white;
+        }
+        .data {
+            font-size: 1em;
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+        .conteudo {
+            display: none;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-top: 10px;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .temporadas-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-top: 50px;
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .temporada {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 1.5em;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .temporada:hover {
+            transform: scale(1.1);
+        }
+        .atual {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu" onclick="toggleMenu()">☰</button>
+    <div class="menu-container" id="menuContainer">
+        <a href="Geradorpartidas.html">Simulador de Partida</a>
+        <a href="#" onclick="pedirSenha()">Escrever Notícia</a>
+    </div>
+    
+    <h1 class="logo">FutR<span>🎲</span>leta</h1>
+    
+    <div id="noticiaFeed"></div>
+    
+    <div class="temporadas-container">
+        <h2>Temporadas</h2>
+        <div id="temporadas"></div>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("menuContainer");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+        
+        function pedirSenha() {
+            let senha = prompt("Digite a senha para acessar a página de escrita de notícias:");
+            if (senha === "FutRoleta!") {
+                window.location.href = "Escrevernoticia.html";
+            } else {
+                alert("Senha incorreta! Acesso negado.");
+            }
+        }
+
+        function carregarTemporadas() {
+            let container = document.getElementById("temporadas");
+            let anos = [];
+            for (let ano = 2031; ano >= 2023; ano--) {
+                anos.push(ano);
+            }
+            
+            anos.forEach(ano => {
+                let span = document.createElement("span");
+                span.classList.add("temporada");
+                if (ano === 2031) {
+                    span.classList.add("atual");
+                    span.innerHTML = `${ano} <br><small>Atual</small>`;
+                    span.onclick = () => alert("Informações da temporada disponível após o término da mesma. Você pode acompanhar as informações da atual temporada pelo feed de notícias");
+                } else {
+                    span.textContent = ano;
+                    span.onclick = () => window.location.href = `Temporada${ano}.html`;
+                }
+                container.appendChild(span);
+            });
+        }
+
+        function carregarNoticias() {
+            const noticias = JSON.parse(localStorage.getItem("noticias")) || [];
+            const feed = document.getElementById("noticiaFeed");
+
+            if (noticias.length === 0) {
+                feed.innerHTML = "<h3>Nenhuma notícia disponível no momento.</h3><p>Volte mais tarde para ver as atualizações.</p>";
+                return;
+            }
+
+            // Ordenar as notícias da mais recente para a mais antiga
+            noticias.sort((a, b) => new Date(b.data) - new Date(a.data));
+
+            noticias.slice(0, 7).forEach(noticia => {
+                const noticiaDiv = document.createElement("div");
+                noticiaDiv.classList.add("noticia-container");
+
+                const titulo = document.createElement("h3");
+                titulo.classList.add("titulo");
+                titulo.textContent = noticia.titulo;
+
+                const data = document.createElement("p");
+                data.classList.add("data");
+                data.textContent = noticia.data;
+
+                const conteudo = document.createElement("div");
+                conteudo.classList.add("conteudo");
+                conteudo.textContent = noticia.conteudo;
+
+                // Toggle para expandir/colapsar a notícia
+                titulo.onclick = () => {
+                    conteudo.style.display = conteudo.style.display === "block" ? "none" : "block";
+                };
+
+                noticiaDiv.appendChild(titulo);
+                noticiaDiv.appendChild(data);
+                noticiaDiv.appendChild(conteudo);
+                
+                feed.appendChild(noticiaDiv);
+            });
+        }
+
+        carregarTemporadas();
+        carregarNoticias();
+    </script>
+</body>
+</html>
