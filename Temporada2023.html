@@ -72,6 +72,19 @@
             border: none;
             color: white;
         }
+        .seta-voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .seta-voltar:hover {
+            color: #FFD700;
+        }
         .menu-container {
             display: none;
             position: absolute;
@@ -93,10 +106,7 @@
     </style>
 </head>
 <body>
-    <button class="menu" onclick="toggleMenu()">☰</button>
-    <div class="menu-container" id="menuContainer">
-        <a href="index.html">Página Inicial</a>
-        <a href="Geradorpartidas.html">Simulador de Partida</a>
+    <button class="seta-voltar" onclick="window.location.href='index.html'">←</button>
     </div>
     <div class="container">
         <h1>FutR🎲leta</h1>
