@@ -115,10 +115,9 @@
         let penaltiGerados = 0;
 
         function simularPlacares() {
-            if (placaresGerados >= 16) {
-                document.getElementById("resultados-placar").innerHTML = ''; // Reseta os resultados
-                placaresGerados = 0;
-            }
+            // Reseta os resultados antes de gerar novos
+            document.getElementById("resultados-placar").innerHTML = '';
+            placaresGerados = 0;
 
             let quantidade = prompt("Digite a quantidade de placares a serem gerados:");
             quantidade = parseInt(quantidade);
@@ -127,15 +126,20 @@
                 return;
             }
 
+            // Verifica se a quantidade inserida é maior que 16
+            if (quantidade > 16) {
+                alert("O limite de placares é 16. Gerando apenas 16 placares.");
+                quantidade = 16;
+            }
+
             let resultados = "";
             for (let i = 0; i < quantidade; i++) {
                 let time1 = gerarPlacar();
                 let time2 = gerarPlacar();
                 resultados += `<p>${time1} x ${time2}</p>`;
                 placaresGerados++;
-                if (placaresGerados >= 16) break; // Limita a quantidade de resultados
             }
-            document.getElementById("resultados-placar").innerHTML += resultados;
+            document.getElementById("resultados-placar").innerHTML = resultados; // Exibe os novos resultados
         }
 
         function gerarPlacar() {
